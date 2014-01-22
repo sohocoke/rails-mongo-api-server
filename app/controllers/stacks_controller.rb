@@ -3,7 +3,8 @@ class StacksController < ApplicationController
 
   # get all stacks
   def index
-    @stacks = Stack.all 
+    @stacks = Stack
+
     respond_with @stacks do |format|
       format.json { render :layout => false, :text => @stacks.to_json }
     end
@@ -12,7 +13,11 @@ class StacksController < ApplicationController
 
   # create new stack
   def create
+    @stack = Stack.new name: params[:name], pages: []
 
+    respond_with @stack do |format|
+      format.json { render :layout => false, :text => @stack.to_json }
+    end
   end
   
   # update existing stack
