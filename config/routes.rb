@@ -22,6 +22,10 @@ RstatUs::Application.routes.draw do
   match '/auth/failure', :to => 'auth#failure'
   match '/users/:username/auth/:provider', :via => :delete, :to => "auth#destroy", :constraints => {:username => /[^\/]+/ }
 
+  # Stacks
+  resources :stacks
+
+
   # Users
   match 'users/:id.:format', :to => "users#show", :constraints => { :id => /[^\/]+/, :format => /json/ }
   resources :users, :constraints => { :id => /[^\/]+/ }
